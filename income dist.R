@@ -7,6 +7,8 @@ equiv_fn <- function(income, adults, kids, adult_weight = 0.5, kid_weight = 0.5)
   equiv_y
 } 
 
+# data from ABS 6523.0 - Household Income and Wealth, Australia, 2015-16
+# table 1.1
 abs.income <- tibble::tribble(
   ~Percentile, ~Income,
   0L,      0,
@@ -21,6 +23,8 @@ abs.income <- tibble::tribble(
   90L,    1705
 )
 
+# data from ABS 6523.0 - Household Income and Wealth, Australia, 2015-16
+# table 1.3 
 fullranges <- tibble(Person = c(1L, 1L, 101L, 1L, 1L, 1L, 101L, 1L, 101L, 1L, 101L, 201L,
                                 1L, 101L, 201L, 301L, 1L, 101L, 201L, 301L,
                                 401L, 501L, 1L, 101L, 201L, 301L, 401L, 501L,
