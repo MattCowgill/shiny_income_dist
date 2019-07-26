@@ -1,7 +1,7 @@
 library(shiny)
 library(tidyverse)
 
-equiv_fn <- function(income, adults, kids, adult_weight = 0.5, kid_weight = 0.5){
+equiv_fn <- function(income, adults, kids, adult_weight = 0.5, kid_weight = 0.3){
   equiv_y <- income / (1 + ((adults - 1) * adult_weight) + (kids * kid_weight))
   equiv_y <- as.integer(equiv_y / 52)
   equiv_y
@@ -219,8 +219,10 @@ server <- function(input, output) {
   
   output$Plot <- renderPlot({
     
-    equiv <- as.integer((input$income / (1 + (0.5 * (input$adults - 1)) + (0.3 * input$kids)))/52)
-
+    equiv <- as.integer(equiv_fn(income = input$income,
+                                 adults = input$adults,
+                                 kids = input$kids))
+    
     user.range <- fullranges$Range[min(which(equiv < fullranges$Top.of.range))]
     
     fullranges %>%
